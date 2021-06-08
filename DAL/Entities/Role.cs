@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace DAL
+namespace DAL.Enities
 {
     public partial class Role
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Username { get; set; }
-
-        public virtual User UsernameNavigation { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using DAL.Enities;
+using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
 #nullable disable
@@ -41,6 +41,7 @@ namespace DAL
         public virtual DbSet<TeachingLevel> TeachingLevels { get; set; }
         public virtual DbSet<TimeSlot> TimeSlots { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -457,17 +458,6 @@ namespace DAL
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(32)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.UsernameNavigation)
-                    .WithMany(p => p.Roles)
-                    .HasForeignKey(d => d.Username)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Role_User");
             });
 
             modelBuilder.Entity<Schedule>(entity =>
@@ -694,6 +684,35 @@ namespace DAL
                     .IsRequired()
                     .HasMaxLength(12)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserRole>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("UserRole");
+
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Role)
+                    .WithMany()
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserRole_Role");
+
+                entity.HasOne(d => d.UsernameNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.Username)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserRole_User");
             });
 
             OnModelCreatingPartial(modelBuilder);

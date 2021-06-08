@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL
+namespace DAL.Enities
 {
     public partial class User
     {
@@ -11,7 +11,6 @@ namespace DAL
         {
             Lectures = new HashSet<Lecture>();
             Requests = new HashSet<Request>();
-            Roles = new HashSet<Role>();
         }
 
         public string Username { get; set; }
@@ -27,6 +26,5 @@ namespace DAL
 
         public virtual ICollection<Lecture> Lectures { get; set; }
         public virtual ICollection<Request> Requests { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
     }
 }

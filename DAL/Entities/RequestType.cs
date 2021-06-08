@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL
+namespace DAL.Enities
 {
     public partial class RequestType
     {
