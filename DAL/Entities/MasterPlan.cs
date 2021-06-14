@@ -5,14 +5,19 @@ using System.Collections.Generic;
 
 namespace DAL.Entities
 {
-    public partial class Course
+    public partial class MasterPlan
     {
+        public MasterPlan()
+        {
+            SemesterPlans = new HashSet<SemesterPlan>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
-        public int SubjectId { get; set; }
+        public string Description { get; set; }
         public int SemesterId { get; set; }
 
         public virtual Semester Semester { get; set; }
-        public virtual Subject Subject { get; set; }
+        public virtual ICollection<SemesterPlan> SemesterPlans { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FLS.Options
+namespace FLS.AppSettings
 {
     public class SwaggerOptions
     {

@@ -34,15 +34,15 @@ namespace DAL.Repositories
             return _dbSet.Where(predicate);
         }
 
-        public void Insert(T entity)
+        public void Insert(T Entities)
         {
-            _dbSet.Add(entity);
+            _dbSet.Add(Entities);
         }
 
-        public void Update(T entity)
+        public void Update(T Entities)
         {
-            _dbSet.Attach(entity);
-            Context.Entry(entity).State = EntityState.Modified;
+            _dbSet.Attach(Entities);
+            Context.Entry(Entities).State = EntityState.Modified;
         }
 
         public void Delete(Object id)

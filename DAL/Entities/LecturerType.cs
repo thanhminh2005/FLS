@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace DAL.Entities
 {
-    public partial class BlogCategory
+    public partial class LecturerType
     {
-        public BlogCategory()
+        public LecturerType()
         {
-            Blogs = new HashSet<Blog>();
+            Lectures = new HashSet<Lecture>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Blog> Blogs { get; set; }
+        public virtual ICollection<Lecture> Lectures { get; set; }
     }
 }

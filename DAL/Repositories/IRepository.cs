@@ -13,8 +13,8 @@ namespace DAL.Repositories
 
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
 
-        void Insert(T entity);
-        void Update(T entity);
+        void Insert(T Entities);
+        void Update(T Entities);
         void Delete(Object id);
     }
 }

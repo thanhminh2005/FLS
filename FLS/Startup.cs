@@ -1,5 +1,6 @@
+using FLS.AppSettings;
 using FLS.Installers;
-using FLS.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +31,6 @@ namespace FLS
             {
                 app.UseDeveloperExceptionPage();
             }
-
             var swaggerOptions = new SwaggerOptions();
 
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
@@ -44,7 +44,7 @@ namespace FLS
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
