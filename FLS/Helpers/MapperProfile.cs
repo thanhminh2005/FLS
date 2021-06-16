@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using BLL.Models.User;
+using BLL.Models.User.Requests;
+using BLL.Models.User.Responses;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FLS.Helpers
 {
@@ -12,8 +9,12 @@ namespace FLS.Helpers
     {
         public MapperProfile()
         {
-            CreateMap<User, UserInformation>().ReverseMap();
-            CreateMap<User, UserProfile>().ReverseMap();
+            CreateMap<User, UserInformationResponse>().ReverseMap();
+            CreateMap<User, UserProfileResponse>().ReverseMap();
+            CreateMap<User, CreateUserRequest>().ReverseMap();
+            CreateMap<User, CreateUserResponse>().ReverseMap();
+            CreateMap<User, UpdateUserRequest>().ReverseMap();
+            CreateMap<User, UserResponse>().ReverseMap();
         }
     }
 }

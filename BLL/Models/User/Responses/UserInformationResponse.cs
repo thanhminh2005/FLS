@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BLL.Models.User
+namespace BLL.Models.User.Responses
 {
-    public class UserInformation
+    public class UserInformationResponse
     {
         public string Username { get; set; }
         public string Email { get; set; }

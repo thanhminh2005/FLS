@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace FLS.AppSettings
+﻿namespace FLS.AppSettings
 {
     public class SwaggerOptions
     {
-        public String JsonRoute { get; set; }
-        public String Description { get; set; }
-        public String UiEndpoint { get; set; }
+        public string JsonRoute { get; set; }
+        public string Description { get; set; }
+        public string UiEndpoint { get; set; }
     }
 }

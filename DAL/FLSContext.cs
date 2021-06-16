@@ -1,9 +1,6 @@
-﻿using System;
-using System.Configuration;
-using DAL.Entities;
+﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 #nullable disable
 
@@ -147,7 +144,7 @@ namespace DAL
 
                 entity.Property(e => e.MinCourse).HasColumnName("MInCourse");
 
-                entity.Property(e => e.Username)
+                entity.Property(e => e.UserId)
                     .IsRequired()
                     .HasMaxLength(32)
                     .IsUnicode(false);
@@ -164,9 +161,9 @@ namespace DAL
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lecture_LecturerType");
 
-                entity.HasOne(d => d.UsernameNavigation)
+                entity.HasOne(d => d.UserNavigation)
                     .WithMany(p => p.Lectures)
-                    .HasForeignKey(d => d.Username)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lecture_User");
             });
@@ -384,7 +381,7 @@ namespace DAL
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(e => e.Username)
+                entity.HasKey(e => e.Id)
                     .HasName("PK_User_1");
 
                 entity.ToTable("User");

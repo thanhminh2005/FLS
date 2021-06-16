@@ -1,13 +1,19 @@
-﻿using BLL.Models.User;
-using System;
+﻿using DAL.Entities;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
     public interface IUserBL
     {
-        UserProfile Login(string username, string password);
-        UserInformation GetInformation(string username);
+        Task<List<User>> GetUsersAsync();
+
+        Task<User> GetUserAsync(int id);
+
+        Task<bool> UpdateUserAsync(User user);
+
+        Task<bool> DeleteUserAsync(int id);
+
+        Task<bool> CreateUserAsync(User user);
     }
 }

@@ -1,29 +1,26 @@
-﻿using BLL.Models.User;
+﻿using BLL.Models.User.Responses;
 using FLS.AppSettings;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FLS.Helpers
 {
-    public class TokenManager
+    public class TokenManager : ITokenManager
     {
-        AppSetting appSetting;
-        public TokenManager(IOptions<AppSetting> options)
+        private readonly JwtSettings _jwtSettings;
+
+        public TokenManager(JwtSettings jwtSettings)
         {
-            appSetting = options.Value;
+            _jwtSettings = jwtSettings;
         }
 
-        public string CreateAccessToken(UserProfile user)
+        public string CreateAccessToken(UserProfileResponse user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(appSetting.Jwt.SecretKey);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -32,7 +29,7 @@ namespace FLS.Helpers
                     new Claim("user_id", user.Username.ToString()),
                     new Claim("user_role", user.RoleId.ToString())
                 }),
-                Expires = DateTime.Now.AddMinutes(appSetting.Jwt.ExprireMinutes),
+                Expires = DateTime.Now.AddMinutes(60),
                 Issuer = null,
                 Audience = null,
                 IssuedAt = DateTime.UtcNow,
