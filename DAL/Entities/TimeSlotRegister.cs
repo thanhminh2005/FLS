@@ -10,7 +10,7 @@ namespace DAL.Entities
         public int LecturerId { get; set; }
         public int TimeSlotId { get; set; }
 
-        public virtual Lecture Lecturer { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
         public virtual SemesterPlan SemesterPlan { get; set; }
         public virtual TimeSlot TimeSlot { get; set; }
     }

@@ -6,6 +6,8 @@
         public const string Version = "v1";
         public const string Base = Root + "/" + Version;
 
+        public static object BlogCategorys { get; internal set; }
+
         public static class Guests
         {
             public const string Login = Base + "/guest/login";
@@ -38,6 +40,67 @@
             public const string Delete = Base + "/subject/{id}";
         }
 
+        public static class Departments
+        {
+            public const string GetAll = Base + "/department/";
+            public const string Get = Base + "/department/{id}";
+            public const string Create = Base + "/department";
+            public const string Update = Base + "/department/{id}";
+            public const string Delete = Base + "/department/{id}";
+        }
 
+        public static class Lecturers
+        {
+            public const string GetAll = Base + "/lecturer/";
+            public const string Get = Base + "/lecturer/{id}";
+            public const string Create = Base + "/lecturer";
+            public const string Update = Base + "/lecturer/{id}";
+            public const string Delete = Base + "/lecturer/{id}";
+        }
+
+        public static class LecturerTypes
+        {
+            public const string GetAll = Base + "/lecturer-type/";
+            public const string Get = Base + "/lecturer-type/{id}";
+            public const string Create = Base + "/lecturer-type";
+            public const string Update = Base + "/lecturer-type/{id}";
+            public const string Delete = Base + "/lecturer-type/{id}";
+        }
+
+        public static class Blogs
+        {
+            public const string GetAll = Base + "/blog/";
+            public const string Get = Base + "/blog/{id}";
+            public const string Create = Base + "/blog";
+            public const string Update = Base + "/blog/{id}";
+            public const string Delete = Base + "/blog/{id}";
+        }
+
+        public static class BlogCategories
+        {
+            public const string GetAll = Base + "/blog-category/";
+            public const string Get = Base + "/blog-category/{id}";
+            public const string Create = Base + "/blog-category";
+            public const string Update = Base + "/blog-category/{id}";
+            public const string Delete = Base + "/blog-category/{id}";
+        }
+
+        public static class Semesters
+        {
+            public const string GetAll = Base + "/semester/";
+            public const string Get = Base + "/semester/{id}";
+            public const string Create = Base + "/semester";
+            public const string Update = Base + "/semester/{id}";
+            public const string Delete = Base + "/semester/{id}";
+        }
+
+        public static class TimeSlots
+        {
+            public const string GetAll = Base + "/time-slot/";
+            public const string Get = Base + "/time-slot/{id}";
+            public const string Create = Base + "/time-slot";
+            public const string Update = Base + "/time-slot/{id}";
+            public const string Delete = Base + "/time-slot/{id}";
+        }
     }
 }

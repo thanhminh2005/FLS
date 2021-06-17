@@ -9,7 +9,7 @@ namespace DAL.Entities
         public int PreferPoint { get; set; }
         public int MatchPoint { get; set; }
 
-        public virtual Lecture Lecturer { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
         public virtual Subject Subject { get; set; }
     }
 }

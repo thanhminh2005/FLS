@@ -4,9 +4,9 @@
 
 namespace DAL.Entities
 {
-    public partial class Lecture
+    public partial class Lecturer
     {
-        public Lecture()
+        public Lecturer()
         {
             LectureSemesterRegisters = new HashSet<LectureSemesterRegister>();
             LecturerRatings = new HashSet<LecturerRating>();
@@ -19,7 +19,7 @@ namespace DAL.Entities
         public bool Status { get; set; }
         public int MaxCourse { get; set; }
         public int MinCourse { get; set; }
-        public int LecturerType { get; set; }
+        public int LecturerTypeId { get; set; }
         public int PriorityPoint { get; set; }
         public int DepartmentId { get; set; }
         public int UserId { get; set; }

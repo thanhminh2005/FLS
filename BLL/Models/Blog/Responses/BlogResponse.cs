@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace DAL.Entities
+namespace BLL.Models.Blog.Responses
 {
-    public partial class Blog
+    public class BlogResponse
     {
-        public Blog()
-        {
-            DepartmentBlogs = new HashSet<DepartmentBlog>();
-        }
-
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime ModifiledDate { get; set; }
         public int BlogCategoryId { get; set; }
-
-        public virtual BlogCategory BlogCategory { get; set; }
-        public virtual ICollection<DepartmentBlog> DepartmentBlogs { get; set; }
     }
 }

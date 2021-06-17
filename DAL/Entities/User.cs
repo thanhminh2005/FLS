@@ -9,7 +9,7 @@ namespace DAL.Entities
     {
         public User()
         {
-            Lectures = new HashSet<Lecture>();
+            Lectures = new HashSet<Lecturer>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace DAL.Entities
         public int RoleId { get; set; }
 
         public virtual Role Role { get; set; }
-        public virtual ICollection<Lecture> Lectures { get; set; }
+        public virtual ICollection<Lecturer> Lectures { get; set; }
     }
 }

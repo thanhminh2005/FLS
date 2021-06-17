@@ -8,12 +8,12 @@ namespace DAL.Entities
     {
         public LecturerType()
         {
-            Lectures = new HashSet<Lecture>();
+            Lectures = new HashSet<Lecturer>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Lecture> Lectures { get; set; }
+        public virtual ICollection<Lecturer> Lectures { get; set; }
     }
 }

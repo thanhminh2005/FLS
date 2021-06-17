@@ -22,7 +22,7 @@ namespace DAL
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DepartmentBlog> DepartmentBlogs { get; set; }
-        public virtual DbSet<Lecture> Lectures { get; set; }
+        public virtual DbSet<Lecturer> Lecturers { get; set; }
         public virtual DbSet<LectureSemesterRegister> LectureSemesterRegisters { get; set; }
         public virtual DbSet<LecturerRating> LecturerRatings { get; set; }
         public virtual DbSet<LecturerType> LecturerTypes { get; set; }
@@ -52,11 +52,6 @@ namespace DAL
             modelBuilder.Entity<Blog>(entity =>
             {
                 entity.ToTable("Blog");
-
-                entity.Property(e => e.DepartmentId)
-                    .IsRequired()
-                    .HasMaxLength(32)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Description).IsRequired();
 
@@ -133,16 +128,14 @@ namespace DAL
                     .HasConstraintName("FK_DepartmentBlog_Department");
             });
 
-            modelBuilder.Entity<Lecture>(entity =>
+            modelBuilder.Entity<Lecturer>(entity =>
             {
-                entity.ToTable("Lecture");
+                entity.ToTable("Lecturer");
 
                 entity.Property(e => e.LecturerCode)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.MinCourse).HasColumnName("MInCourse");
 
                 entity.Property(e => e.UserId)
                     .IsRequired()
@@ -157,7 +150,7 @@ namespace DAL
 
                 entity.HasOne(d => d.LecturerTypeNavigation)
                     .WithMany(p => p.Lectures)
-                    .HasForeignKey(d => d.LecturerType)
+                    .HasForeignKey(d => d.LecturerTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lecture_LecturerType");
 

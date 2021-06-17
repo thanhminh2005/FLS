@@ -6,12 +6,14 @@ namespace BLL.Interfaces
 {
     public interface ISubjectBL
     {
-        Task<List<Subject>> GetAllSubjects();
+        Task<List<Subject>> GetAllSubjectsAsync();
 
-        Task<Subject> GetSubject(int id);
+        Task<Subject> GetSubjectAsync(int id);
 
-        Task<bool> CreateSubject(Subject subject);
+        Task<bool> UpdateSubjectAsync(Subject subject);
 
-        Task<bool> UpdateSubject(Subject subject);
+        Task<bool> DeleteSubjectAsync(int id);
+
+        Task<bool> CreateSubjectAsync(Subject subject);
     }
 }

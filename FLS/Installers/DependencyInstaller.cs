@@ -14,6 +14,14 @@ namespace FLS.Installers
             services.AddScoped<IGuestBL, GuessBL>();
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IRoleBL, RoleBL>();
+            services.AddScoped<ISubjectBL, SubjectBL>();
+            services.AddScoped<IDepartmentBL, DepartmentBL>();
+            services.AddScoped<ILecturerBL, LecturerBL>();
+            services.AddScoped<ILecturerTypeBL, LecturerTypeBL>();
+            services.AddScoped<IBlogBL, BlogBL>();
+            services.AddScoped<IBlogCategoryBL, BlogCategoryBL>();
+            services.AddScoped<ISemesterBL, SemesterBL>();
+            services.AddScoped<ITimeSlotBL, TimeSlotBL>();
         }
     }
 }

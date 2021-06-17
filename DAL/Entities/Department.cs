@@ -9,7 +9,7 @@ namespace DAL.Entities
         public Department()
         {
             DepartmentBlogs = new HashSet<DepartmentBlog>();
-            Lectures = new HashSet<Lecture>();
+            Lectures = new HashSet<Lecturer>();
             Subjects = new HashSet<Subject>();
         }
 
@@ -18,7 +18,7 @@ namespace DAL.Entities
         public string Description { get; set; }
 
         public virtual ICollection<DepartmentBlog> DepartmentBlogs { get; set; }
-        public virtual ICollection<Lecture> Lectures { get; set; }
+        public virtual ICollection<Lecturer> Lectures { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
     }
 }
