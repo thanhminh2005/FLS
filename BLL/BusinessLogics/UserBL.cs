@@ -24,7 +24,6 @@ namespace BLL.BusinessLogics
             var existUser = await _context.Users.SingleOrDefaultAsync(x => x.Username.Equals(user.Username));
             if (existUser == null)
             {
-                user.Id = await _context.Users.CountAsync() + 1;
                 user.Username.Trim().ToLower();
                 await _context.Users.AddAsync(user);
                 var created = await _context.SaveChangesAsync();
@@ -50,23 +49,23 @@ namespace BLL.BusinessLogics
             return _context.Users.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<User>> GetUsersAsync()
+        public Task<List<User>> GetAllUsersAsync()
         {
             return _context.Users.ToListAsync();
         }
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            var orgUser = await _context.Users.SingleOrDefaultAsync(x => x.Id == user.Id);
-            if (orgUser != null)
+            var newUser = await _context.Users.SingleOrDefaultAsync(x => x.Id == user.Id);
+            if (newUser != null)
             {
-                orgUser.Password = user.Password;
-                orgUser.Email = user.Email;
-                orgUser.Address = user.Address;
-                orgUser.PhoneNumber = user.PhoneNumber;
-                orgUser.AvatarLink = user.AvatarLink;
-                orgUser.RoleId = user.RoleId;
-                _context.Users.Update(orgUser);
+                newUser.Password = user.Password;
+                newUser.Email = user.Email;
+                newUser.Address = user.Address;
+                newUser.PhoneNumber = user.PhoneNumber;
+                newUser.AvatarLink = user.AvatarLink;
+                newUser.RoleId = user.RoleId;
+                _context.Users.Update(newUser);
                 var updated = await _context.SaveChangesAsync();
                 return updated > 0;
             }

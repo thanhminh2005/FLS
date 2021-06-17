@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BLL.Models.Role.Requests;
+using BLL.Models.Role.Responses;
 using BLL.Models.User.Requests;
 using BLL.Models.User.Responses;
 using DAL.Entities;
@@ -15,6 +17,9 @@ namespace FLS.Helpers
             CreateMap<User, CreateUserResponse>().ReverseMap();
             CreateMap<User, UpdateUserRequest>().ReverseMap();
             CreateMap<User, UserResponse>().ReverseMap();
+
+            CreateMap<Role, RoleResponse>().ReverseMap();
+            CreateMap<Role, RoleRequest>().ReverseMap();
         }
     }
 }

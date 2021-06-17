@@ -6,7 +6,7 @@ namespace BLL.Interfaces
 {
     public interface IUserBL
     {
-        Task<List<User>> GetUsersAsync();
+        Task<List<User>> GetAllUsersAsync();
 
         Task<User> GetUserAsync(int id);
 

@@ -20,6 +20,15 @@
             public const string Delete = Base + "/user/{id}";
         }
 
+        public static class Roles
+        {
+            public const string GetAll = Base + "/role/";
+            public const string Get = Base + "/role/{id}";
+            public const string Create = Base + "/role";
+            public const string Update = Base + "/role/{id}";
+            public const string Delete = Base + "/role/{id}";
+        }
+
         public static class Subjects
         {
             public const string GetAll = Base + "/subject/";
@@ -28,5 +37,7 @@
             public const string Update = Base + "/subject/{id}";
             public const string Delete = Base + "/subject/{id}";
         }
+
+
     }
 }

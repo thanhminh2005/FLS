@@ -13,6 +13,7 @@ namespace FLS.Installers
             services.AddScoped<ITokenManager, TokenManager>();
             services.AddScoped<IGuestBL, GuessBL>();
             services.AddScoped<IUserBL, UserBL>();
+            services.AddScoped<IRoleBL, RoleBL>();
         }
     }
 }

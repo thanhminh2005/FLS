@@ -28,7 +28,7 @@ namespace FLS.Controllers
             if (user != null)
             {
                 var response = _mapper.Map<UserResponse>(user);
-                return Ok(user);
+                return Ok(response);
             }
             return NotFound();
         }
@@ -36,7 +36,7 @@ namespace FLS.Controllers
         [HttpGet(ApiRoute.Users.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _userBL.GetUsersAsync();
+            var users = await _userBL.GetAllUsersAsync();
             if (users != null)
             {
                 var response = _mapper.Map<List<User>, List<UserResponse>>(users);
@@ -50,14 +50,17 @@ namespace FLS.Controllers
         {
             var user = _mapper.Map<User>(request);
 
-            await _userBL.CreateUserAsync(user);
+            var created = await _userBL.CreateUserAsync(user);
+            if(created)
+            {
+                var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
+                var locationUri = baseUrl + "/" + ApiRoute.Users.Get.Replace("{id}", user.Id.ToString());
 
-            var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-            var locationUri = baseUrl + "/" + ApiRoute.Users.Get.Replace("{id}", user.Id.ToString());
+                var response = _mapper.Map<CreateUserResponse>(user);
 
-            var response = _mapper.Map<CreateUserResponse>(user);
-
-            return Created(locationUri, response);
+                return Created(locationUri, response);
+            }
+            return BadRequest();
         }
 
         [HttpPut(ApiRoute.Users.Update)]
@@ -76,8 +79,8 @@ namespace FLS.Controllers
         [HttpDelete(ApiRoute.Users.Delete)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var updated = await _userBL.DeleteUserAsync(id);
-            if (updated)
+            var deleted = await _userBL.DeleteUserAsync(id);
+            if (deleted)
             {
                 return Ok();
             }
