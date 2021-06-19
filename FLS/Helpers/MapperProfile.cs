@@ -10,6 +10,7 @@ using BLL.Models.Department.Responses;
 using BLL.Models.DepartmentBlog.Requests;
 using BLL.Models.Lecturer.Requests;
 using BLL.Models.Lecturer.Responses;
+using BLL.Models.LecturerRating.Requests;
 using BLL.Models.LecturerType.Requests;
 using BLL.Models.LecturerType.Responses;
 using BLL.Models.Role.Requests;
@@ -69,6 +70,8 @@ namespace FLS.Helpers
             CreateMap<Course, CourseResponse>().ReverseMap();
 
             CreateMap<DepartmentBlog, DepartmentBlogRequest>().ReverseMap();
+
+            CreateMap<LecturerRating, LecturerRatingRequest>().ReverseMap();
 
 
         }

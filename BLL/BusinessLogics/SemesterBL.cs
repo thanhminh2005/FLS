@@ -58,7 +58,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateSemesterAsync(Semester semester)
         {
-            var newSemester = await _context.Semesters.SingleOrDefaultAsync(x => x.Id == semester.Id);
+            var newSemester = await GetSemesterAsync(semester.Id);
             if (newSemester != null)
             {
                 if (semester.StartDate.CompareTo(semester.EndDate) < 0)

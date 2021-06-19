@@ -57,7 +57,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateTimeSlotAsync(TimeSlot slot)
         {
-            var newTimeSlot = await _context.TimeSlots.SingleOrDefaultAsync(x => x.Id == slot.Id);
+            var newTimeSlot = await GetTimeSlotAsync(slot.Id);
             if (newTimeSlot != null)
             {
                 if (!IsOverLap(slot.StartTime, slot.EndTime, await GetAllTimeSlotsAsync()))

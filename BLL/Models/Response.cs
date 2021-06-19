@@ -12,7 +12,7 @@ namespace BLL.Models
         }
         public Response(T response)
         {
-
+            Data = response;
         }
 
         public T Data { get; set; }

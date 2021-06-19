@@ -55,7 +55,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateSubjectAsync(Subject subject)
         {
-            var newSubject = await _context.Subjects.SingleOrDefaultAsync(x => x.Id == subject.Id);
+            var newSubject = await GetSubjectAsync(subject.Id);
             if (newSubject != null)
             {
                 newSubject.DepartmentId = subject.DepartmentId;

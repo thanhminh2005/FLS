@@ -51,7 +51,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateCourseAsync(Course course)
         {
-            var newCourse = await _context.Courses.SingleOrDefaultAsync(x => x.Id == course.Id);
+            var newCourse = await GetCourseAsync(course.Id);
             if (newCourse != null)
             {
                 newCourse.Name = course.Name;

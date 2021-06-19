@@ -42,17 +42,25 @@ namespace BLL.BusinessLogics
 
         public Task<List<DepartmentBlog>> GetAllDepartmentBlogsAsync()
         {
-            return _context.DepartmentBlogs.Include(x => x.Blog).Include(x => x.Department).ToListAsync();
+            return _context
+                .DepartmentBlogs
+                .Include(x => x.Blog)
+                .Include(x => x.Department)
+                .ToListAsync();
         }
 
         public Task<DepartmentBlog> GetDepartmentBlogAsync(int departmentId, int blogId)
         {
-            return _context.DepartmentBlogs.Include(x => x.Blog).Include(x => x.Department).SingleOrDefaultAsync(x => x.BlogId == blogId && x.DepartmentId == departmentId);
+            return _context
+                .DepartmentBlogs
+                .Include(x => x.Blog)
+                .Include(x => x.Department)
+                .SingleOrDefaultAsync(x => x.BlogId == blogId && x.DepartmentId == departmentId);
         }
 
         public async Task<bool> UpdateDepartmentBlogAsync(DepartmentBlog blog)
         {
-            var newDepartmentBlog = await _context.DepartmentBlogs.SingleOrDefaultAsync(x => x.BlogId == blog.BlogId && x.DepartmentId == blog.DepartmentId);
+            var newDepartmentBlog = await GetDepartmentBlogAsync(blog.DepartmentId, blog.BlogId);
             if (newDepartmentBlog != null)
             {
                 newDepartmentBlog.BlogId = blog.BlogId;

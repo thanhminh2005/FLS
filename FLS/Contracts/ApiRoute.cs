@@ -120,5 +120,14 @@
             public const string Update = Base + "/department-blog";
             public const string Delete = Base + "/department-blog/{dept-id}/{blog-id}";
         }
+
+        public static class LecturerRatings
+        {
+            public const string GetAll = Base + "/leturer-rating/";
+            public const string Get = Base + "/leturer-rating/{semplan-id}/{lec-id}";
+            public const string Create = Base + "/leturer-rating";
+            public const string Update = Base + "/leturer-rating";
+            public const string Delete = Base + "/leturer-rating/{semplan-id}/{lec-id}";
+        }
     }
 }

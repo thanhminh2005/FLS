@@ -50,7 +50,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateBlogCategoryAsync(BlogCategory category)
         {
-            var newCategory = await _context.BlogCategories.SingleOrDefaultAsync(x => x.Id == category.Id);
+            var newCategory = await GetBlogCategoryAsync(category.Id);
             if (newCategory != null)
             {
                 newCategory.Name = category.Name;

@@ -24,6 +24,8 @@ namespace FLS.Installers
             services.AddScoped<ITimeSlotBL, TimeSlotBL>();
             services.AddScoped<ICourseBL, CourseBL>();
             services.AddScoped<IDepartmentBlogBL, DepartmentBlogBL>();
+            services.AddScoped<ILecturerRatingBL, LecturerRatingBL>();
+            services.AddScoped<ISemesterRegistryBL, SemesterRegistryBL>();
         }
     }
 }

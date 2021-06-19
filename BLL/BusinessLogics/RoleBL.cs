@@ -55,7 +55,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateRoleAsync(Role role)
         {
-            var newRole = await _context.Roles.SingleOrDefaultAsync(x => x.Id == role.Id);
+            var newRole = await GetRoleAsync(role.Id);
             if (newRole != null)
             {
                 newRole.Name = role.Name;

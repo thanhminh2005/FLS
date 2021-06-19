@@ -56,7 +56,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            var newUser = await _context.Users.SingleOrDefaultAsync(x => x.Id == user.Id);
+            var newUser = await GetUserAsync(user.Id);
             if (newUser != null)
             {
                 newUser.Password = user.Password;

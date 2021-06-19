@@ -55,7 +55,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateDepartmentAsync(Department department)
         {
-            var newDepartment = await _context.Departments.SingleOrDefaultAsync(x => x.Id == department.Id);
+            var newDepartment = await GetDepartmentAsync(department.Id);
             if (newDepartment != null)
             {
                 newDepartment.Name = department.Name;

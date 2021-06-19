@@ -55,7 +55,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> UpdateLecturerTypeAsync(LecturerType type)
         {
-            var newLecturerType = await _context.LecturerTypes.SingleOrDefaultAsync(x => x.Id == type.Id);
+            var newLecturerType = await GetLecturerTypeAsync(type.Id);
             if (newLecturerType != null)
             {
                 newLecturerType.Name = type.Name;
