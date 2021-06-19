@@ -5,9 +5,7 @@ using BLL.Models.BlogCategory.Responses;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
@@ -61,7 +59,6 @@ namespace FLS.Controllers
                 return Created(locationUri, response);
             }
             return BadRequest();
-
         }
 
         [HttpPut(ApiRoute.BlogCategories.Update)]

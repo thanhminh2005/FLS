@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.Subject.Requests
+﻿namespace BLL.Models.Subject.Requests
 {
     public class SubjectRequest
     {

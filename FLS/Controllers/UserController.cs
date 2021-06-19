@@ -51,7 +51,7 @@ namespace FLS.Controllers
             var user = _mapper.Map<User>(request);
 
             var created = await _userBL.CreateUserAsync(user);
-            if(created)
+            if (created)
             {
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
                 var locationUri = baseUrl + "/" + ApiRoute.Users.Get.Replace("{id}", user.Id.ToString());

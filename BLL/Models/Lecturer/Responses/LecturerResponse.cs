@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.Lecturer.Responses
+﻿namespace BLL.Models.Lecturer.Responses
 {
     public class LecturerResponse
     {

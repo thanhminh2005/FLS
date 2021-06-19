@@ -22,7 +22,7 @@ namespace BLL.BusinessLogics
         {
             if (!String.IsNullOrWhiteSpace(username) || !String.IsNullOrWhiteSpace(password))
             {
-                var user = _context.Users.FirstOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
+                var user = _context.Users.SingleOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
                 if (user != null)
                 {
                     var userProfile = _mapper.Map<UserProfileResponse>(user);

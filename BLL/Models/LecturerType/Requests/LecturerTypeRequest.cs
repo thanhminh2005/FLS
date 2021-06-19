@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.LecturerType.Requests
+﻿namespace BLL.Models.LecturerType.Requests
 {
     public class LecturerTypeRequest
     {

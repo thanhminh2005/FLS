@@ -3,9 +3,7 @@ using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -61,7 +59,7 @@ namespace BLL.BusinessLogics
             if (newSubject != null)
             {
                 newSubject.DepartmentId = subject.DepartmentId;
-                if(!subject.SubjectCode.Equals(newSubject.SubjectCode))
+                if (!subject.SubjectCode.Equals(newSubject.SubjectCode))
                 {
                     newSubject.PreviousCode = newSubject.SubjectCode;
                     newSubject.SubjectCode = subject.SubjectCode;

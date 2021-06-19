@@ -5,14 +5,12 @@ using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
 {
     public class TimeSlotBL : ITimeSlotBL
     {
-
         private readonly IMapper _mapper;
         private readonly FLSContext _context;
         private readonly TimeSpan startWorkTime = new TimeSpan(6, 0, 0);
@@ -26,7 +24,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> CreateTimeSlotAsync(TimeSlot slot)
         {
-            if(!IsOverLap(slot.StartTime, slot.EndTime, await GetAllTimeSlotsAsync()))
+            if (!IsOverLap(slot.StartTime, slot.EndTime, await GetAllTimeSlotsAsync()))
             {
                 await _context.TimeSlots.AddAsync(slot);
                 var created = await _context.SaveChangesAsync();
@@ -70,7 +68,6 @@ namespace BLL.BusinessLogics
                 }
             }
             return false;
-
         }
 
         private bool isPeriodValid(TimeSpan start, TimeSpan end)
@@ -82,7 +79,7 @@ namespace BLL.BusinessLogics
         private bool IsOverLap(TimeSpan start, TimeSpan end, List<TimeSlot> slots)
         {
             var check = false;
-            if(isPeriodValid(start,end))
+            if (isPeriodValid(start, end))
             {
                 check = true;
                 foreach (var slot in slots)

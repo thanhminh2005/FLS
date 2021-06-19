@@ -1,74 +1,70 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
-using BLL.Models.Blog.Requests;
-using BLL.Models.Blog.Responses;
+using BLL.Models.DepartmentBlog.Requests;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
 {
-    public class BlogController : Controller
+    public class DepartmentBlogController : Controller
     {
-        private readonly IBlogBL _blogBL;
+        private readonly IDepartmentBlogBL _departmentBlogBL;
         private readonly IMapper _mapper;
 
-        public BlogController(IBlogBL blogBL, IMapper mapper)
+        public DepartmentBlogController(IDepartmentBlogBL departmentBlogBL, IMapper mapper)
         {
-            _blogBL = blogBL;
+            _departmentBlogBL = departmentBlogBL;
             _mapper = mapper;
         }
 
-        [HttpGet(ApiRoute.Blogs.Get)]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        [HttpGet(ApiRoute.DepartmentBlogs.Get)]
+        public async Task<IActionResult> Get([FromRoute(Name = "dept-id")] int departmentId, [FromRoute(Name = "blog-id")] int blogId)
         {
-            var blog = await _blogBL.GetBlogAsync(id);
-            if (blog != null)
+            var departmentBlog = await _departmentBlogBL.GetDepartmentBlogAsync(departmentId, blogId);
+            if (departmentBlog != null)
             {
-                var response = _mapper.Map<BlogResponse>(blog);
+                var response = departmentBlog;
                 return Ok(response);
             }
             return NotFound();
         }
 
-        [HttpGet(ApiRoute.Blogs.GetAll)]
+        [HttpGet(ApiRoute.DepartmentBlogs.GetAll)]
         public async Task<IActionResult> GetAll()
         {
-            var blogs = await _blogBL.GetAllBlogsAsync();
-            if (blogs != null)
+            var departmentBlogs = await _departmentBlogBL.GetAllDepartmentBlogsAsync();
+            if (departmentBlogs != null)
             {
-                var response = _mapper.Map<List<Blog>, List<BlogResponse>>(blogs);
+                var response = departmentBlogs;
                 return Ok(response);
             }
             return NoContent();
         }
 
-        [HttpPost(ApiRoute.Blogs.Create)]
-        public async Task<IActionResult> Create([FromBody] CreateBlogRequest request)
+        [HttpPost(ApiRoute.DepartmentBlogs.Create)]
+        public async Task<IActionResult> Create([FromBody] DepartmentBlogRequest request)
         {
-            var blog = _mapper.Map<Blog>(request);
+            var departmentBlog = _mapper.Map<DepartmentBlog>(request);
 
-            var created = await _blogBL.CreateBlogAsync(blog);
+            var created = await _departmentBlogBL.CreateDepartmentBlogAsync(departmentBlog);
             if (created)
             {
-                var response = _mapper.Map<BlogResponse>(blog);
+                var response = _departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId);
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-                var locationUri = baseUrl + "/" + ApiRoute.Blogs.Get.Replace("{id}", blog.Id.ToString());
+                var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}/{blog-id}", departmentBlog.DepartmentId.ToString()+ "/"+ departmentBlog.BlogId.ToString());
                 return Created(locationUri, response);
             }
             return BadRequest();
-
         }
 
-        [HttpPut(ApiRoute.Blogs.Update)]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateBlogRequest request)
+        [HttpPut(ApiRoute.DepartmentBlogs.Update)]
+        public async Task<IActionResult> Update([FromBody] DepartmentBlogRequest request)
         {
-            var blog = _mapper.Map<Blog>(request);
-            var updated = await _blogBL.UpdateBlogAsync(blog);
+            var departmentBlog = _mapper.Map<DepartmentBlog>(request);
+            var updated = await _departmentBlogBL.UpdateDepartmentBlogAsync(departmentBlog);
             if (updated)
             {
                 return Ok();
@@ -76,10 +72,10 @@ namespace FLS.Controllers
             return NotFound();
         }
 
-        [HttpDelete(ApiRoute.Blogs.Delete)]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        [HttpDelete(ApiRoute.DepartmentBlogs.Delete)]
+        public async Task<IActionResult> Delete([FromRoute(Name = "dept-id")] int departmentId, [FromRoute(Name = "blog-id")] int blogId)
         {
-            var deleted = await _blogBL.DeleteBlogAsync(id);
+            var deleted = await _departmentBlogBL.DeleteDepartmentBlogAsync(departmentId, blogId);
             if (deleted)
             {
                 return Ok();

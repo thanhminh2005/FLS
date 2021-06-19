@@ -5,9 +5,7 @@ using BLL.Models.Role.Responses;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
@@ -53,7 +51,7 @@ namespace FLS.Controllers
             var role = _mapper.Map<Role>(request);
 
             var created = await _roleBL.CreateRoleAsync(role);
-            if(created)
+            if (created)
             {
                 var response = _mapper.Map<RoleResponse>(role);
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
@@ -61,7 +59,6 @@ namespace FLS.Controllers
                 return Created(locationUri, response);
             }
             return BadRequest();
-
         }
 
         [HttpPut(ApiRoute.Roles.Update)]

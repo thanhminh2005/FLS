@@ -3,16 +3,13 @@ using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
 {
     public class SemesterBL : ISemesterBL
     {
-
         private readonly IMapper _mapper;
         private readonly FLSContext _context;
 
@@ -25,7 +22,7 @@ namespace BLL.BusinessLogics
         public async Task<bool> CreateSemesterAsync(Semester semester)
         {
             var existSemester = await _context.Semesters.SingleOrDefaultAsync(x => x.Name.Equals(semester.Name));
-            if(existSemester == null)
+            if (existSemester == null)
             {
                 if (semester.StartDate.CompareTo(semester.EndDate) < 0)
                 {

@@ -3,16 +3,13 @@ using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
 {
     public class DepartmentBL : IDepartmentBL
     {
-
         private readonly IMapper _mapper;
         private readonly FLSContext _context;
 

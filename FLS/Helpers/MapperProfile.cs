@@ -3,8 +3,11 @@ using BLL.Models.Blog.Requests;
 using BLL.Models.Blog.Responses;
 using BLL.Models.BlogCategory.Requests;
 using BLL.Models.BlogCategory.Responses;
+using BLL.Models.Course.Requests;
+using BLL.Models.Course.Responses;
 using BLL.Models.Department.Requests;
 using BLL.Models.Department.Responses;
+using BLL.Models.DepartmentBlog.Requests;
 using BLL.Models.Lecturer.Requests;
 using BLL.Models.Lecturer.Responses;
 using BLL.Models.LecturerType.Requests;
@@ -61,6 +64,12 @@ namespace FLS.Helpers
 
             CreateMap<TimeSlot, TimeSlotRequest>().ReverseMap();
             CreateMap<TimeSlot, TimeSlotResponse>().ReverseMap();
+
+            CreateMap<Course, CourseRequest>().ReverseMap();
+            CreateMap<Course, CourseResponse>().ReverseMap();
+
+            CreateMap<DepartmentBlog, DepartmentBlogRequest>().ReverseMap();
+
 
         }
     }

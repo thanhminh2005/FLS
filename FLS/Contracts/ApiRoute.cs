@@ -102,5 +102,23 @@
             public const string Update = Base + "/time-slot/{id}";
             public const string Delete = Base + "/time-slot/{id}";
         }
+
+        public static class Courses
+        {
+            public const string GetAll = Base + "/course/";
+            public const string Get = Base + "/course/{id}";
+            public const string Create = Base + "/course";
+            public const string Update = Base + "/course/{id}";
+            public const string Delete = Base + "/course/{id}";
+        }
+
+        public static class DepartmentBlogs
+        {
+            public const string GetAll = Base + "/department-blog/";
+            public const string Get = Base + "/department-blog/{dept-id}/{blog-id}";
+            public const string Create = Base + "/department-blog";
+            public const string Update = Base + "/department-blog";
+            public const string Delete = Base + "/department-blog/{dept-id}/{blog-id}";
+        }
     }
 }
