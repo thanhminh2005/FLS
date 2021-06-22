@@ -11,6 +11,7 @@ namespace FLS.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<ITimeConvert, TimeConvert>();
             services.AddScoped<IGuestBL, GuessBL>();
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IRoleBL, RoleBL>();
@@ -25,7 +26,11 @@ namespace FLS.Installers
             services.AddScoped<ICourseBL, CourseBL>();
             services.AddScoped<IDepartmentBlogBL, DepartmentBlogBL>();
             services.AddScoped<ILecturerRatingBL, LecturerRatingBL>();
-            services.AddScoped<ISemesterRegistryBL, SemesterRegistryBL>();
+            services.AddScoped<ISemesterRegisterBL, SemesterRegisterBL>();
+            services.AddScoped<ISubjectRegisterBL, SubjectRegisterBL>();
+            services.AddScoped<ITeachableSubjectBL, TeachableSubjectBL>();
+            services.AddScoped<ITimeSlotRegisterBL, TimeSlotRegisterBL>();
+            services.AddScoped<IMasterPlanBL, MasterPlanBL>();
         }
     }
 }

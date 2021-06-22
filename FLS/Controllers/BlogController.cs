@@ -65,6 +65,7 @@ namespace FLS.Controllers
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateBlogRequest request)
         {
             var blog = _mapper.Map<Blog>(request);
+            blog.Id = id;
             var updated = await _blogBL.UpdateBlogAsync(blog);
             if (updated)
             {

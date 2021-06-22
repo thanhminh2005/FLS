@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
 {
-    public class SemesterRegistryBL : ISemesterRegistryBL
+    public class SemesterRegisterBL : ISemesterRegisterBL
     {
         private readonly IMapper _mapper;
         private readonly FLSContext _context;
 
-        public SemesterRegistryBL(IMapper mapper, FLSContext context)
+        public SemesterRegisterBL(IMapper mapper, FLSContext context)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateSemesterRegistryAsync(LectureSemesterRegister register)
+        public async Task<bool> CreateSemesterRegisterAsync(LectureSemesterRegister register)
         {
             await _context.LectureSemesterRegisters.AddAsync(register);
             var created = await _context.SaveChangesAsync();
             return created > 0;
         }
 
-        public async Task<bool> DeleteSemesterRegistryAsync(int semesterId, int lecturerId)
+        public async Task<bool> DeleteSemesterRegisterAsync(int semesterId, int lecturerId)
         {
             var register = new LectureSemesterRegister
             {
@@ -41,7 +41,7 @@ namespace BLL.BusinessLogics
             return deleted > 0;
         }
 
-        public Task<List<LectureSemesterRegister>> GetAllSemesterRegistrysAsync()
+        public Task<List<LectureSemesterRegister>> GetAllSemesterRegistersAsync()
         {
             return _context
                 .LectureSemesterRegisters
@@ -50,16 +50,16 @@ namespace BLL.BusinessLogics
                 .ToListAsync();
         }
 
-        public Task<LectureSemesterRegister> GetSemesterRegistryAsync(int semesterId, int lecturerId)
+        public Task<LectureSemesterRegister> GetSemesterRegisterAsync(int semesterId, int lecturerId)
         {
             return _context
                 .LectureSemesterRegisters
                 .SingleOrDefaultAsync(x => x.SemesterId == semesterId && x.LecturerId == lecturerId);
         }
 
-        public async Task<bool> UpdateSemesterRegistryAsync(LectureSemesterRegister register)
+        public async Task<bool> UpdateSemesterRegisterAsync(LectureSemesterRegister register)
         {
-            var newRegister = await GetSemesterRegistryAsync(register.SemesterId, register.LecturerId);
+            var newRegister = await GetSemesterRegisterAsync(register.SemesterId, register.LecturerId);
             if (newRegister != null)
             {
                 newRegister.SemesterId = register.SemesterId;

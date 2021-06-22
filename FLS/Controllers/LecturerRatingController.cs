@@ -73,9 +73,9 @@ namespace FLS.Controllers
         }
 
         [HttpDelete(ApiRoute.LecturerRatings.Delete)]
-        public async Task<IActionResult> Delete([FromRoute(Name = "dept-id")] int departmentId, [FromRoute(Name = "blog-id")] int blogId)
+        public async Task<IActionResult> Delete([FromRoute(Name = "semplan-id")] int semesterPlanId, [FromRoute(Name = "lec-id")] int lecturerId)
         {
-            var deleted = await _departmentBlogBL.DeleteLecturerRatingAsync(departmentId, blogId);
+            var deleted = await _departmentBlogBL.DeleteLecturerRatingAsync(semesterPlanId, lecturerId);
             if (deleted)
             {
                 return Ok();

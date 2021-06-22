@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
+using BLL.Models;
 using BLL.Models.User.Requests;
 using BLL.Models.User.Responses;
 using DAL.Entities;
@@ -39,7 +40,7 @@ namespace FLS.Controllers
             var users = await _userBL.GetAllUsersAsync();
             if (users != null)
             {
-                var response = _mapper.Map<List<User>, List<UserResponse>>(users);
+                var response = new Response<List<UserResponse>>(_mapper.Map<List<User>, List<UserResponse>>(users));
                 return Ok(response);
             }
             return NoContent();

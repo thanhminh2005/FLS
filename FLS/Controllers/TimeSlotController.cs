@@ -4,6 +4,7 @@ using BLL.Models.TimeSlot.Requests;
 using BLL.Models.TimeSlot.Responses;
 using DAL.Entities;
 using FLS.Contracts;
+using FLS.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,11 +15,13 @@ namespace FLS.Controllers
     {
         private readonly ITimeSlotBL _slotBL;
         private readonly IMapper _mapper;
+        private readonly ITimeConvert _timeConvert;
 
-        public TimeSlotController(ITimeSlotBL slotBL, IMapper mapper)
+        public TimeSlotController(ITimeSlotBL slotBL, IMapper mapper, ITimeConvert timeConvert)
         {
             _slotBL = slotBL;
             _mapper = mapper;
+            _timeConvert = timeConvert;
         }
 
         [HttpGet(ApiRoute.TimeSlots.Get)]
@@ -27,7 +30,14 @@ namespace FLS.Controllers
             var slot = await _slotBL.GetTimeSlotAsync(id);
             if (slot != null)
             {
-                var response = _mapper.Map<TimeSlotResponse>(slot);
+                var response = new TimeSlotResponse
+                {
+                    Id = slot.Id,
+                    Name = slot.Name,
+                    PriorityPoint = slot.PriorityPoint,
+                    EndTime = _timeConvert.TimeSpanToString(slot.EndTime),
+                    StartTime = _timeConvert.TimeSpanToString(slot.StartTime)
+                };
                 return Ok(response);
             }
             return NotFound();
@@ -39,7 +49,19 @@ namespace FLS.Controllers
             var slots = await _slotBL.GetAllTimeSlotsAsync();
             if (slots != null)
             {
-                var response = _mapper.Map<List<TimeSlot>, List<TimeSlotResponse>>(slots);
+                var response = new List<TimeSlotResponse>();
+                foreach (TimeSlot slot in slots)
+                {
+                    var responseSlot = new TimeSlotResponse
+                    {
+                        Id = slot.Id,
+                        Name = slot.Name,
+                        PriorityPoint = slot.PriorityPoint,
+                        EndTime = _timeConvert.TimeSpanToString(slot.EndTime),
+                        StartTime = _timeConvert.TimeSpanToString(slot.StartTime)
+                    };
+                    response.Add(responseSlot);
+                }
                 return Ok(response);
             }
             return NoContent();
@@ -48,12 +70,25 @@ namespace FLS.Controllers
         [HttpPost(ApiRoute.TimeSlots.Create)]
         public async Task<IActionResult> Create([FromBody] TimeSlotRequest request)
         {
-            var slot = _mapper.Map<TimeSlot>(request);
+            var slot = new TimeSlot
+            {
+                Name = request.Name,
+                PriorityPoint = request.PriorityPoint,
+                EndTime = _timeConvert.StringToTimeSpan(request.EndTime),
+                StartTime = _timeConvert.StringToTimeSpan(request.StartTime)
+            };
 
             var created = await _slotBL.CreateTimeSlotAsync(slot);
             if (created)
             {
-                var response = _mapper.Map<TimeSlotResponse>(slot);
+                var response = new TimeSlotResponse
+                {
+                    Id = slot.Id,
+                    Name = slot.Name,
+                    PriorityPoint = slot.PriorityPoint,
+                    EndTime = _timeConvert.TimeSpanToString(slot.EndTime),
+                    StartTime = _timeConvert.TimeSpanToString(slot.StartTime)
+                };
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
                 var locationUri = baseUrl + "/" + ApiRoute.TimeSlots.Get.Replace("{id}", slot.Id.ToString());
                 return Created(locationUri, response);
@@ -64,7 +99,15 @@ namespace FLS.Controllers
         [HttpPut(ApiRoute.TimeSlots.Update)]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] TimeSlotRequest request)
         {
-            var slot = _mapper.Map<TimeSlot>(request);
+            var slot = new TimeSlot
+            {
+                Id = id,
+                Name = request.Name,
+                PriorityPoint = request.PriorityPoint,
+                EndTime = _timeConvert.StringToTimeSpan(request.EndTime),
+                StartTime = _timeConvert.StringToTimeSpan(request.StartTime)
+            };
+            
             var updated = await _slotBL.UpdateTimeSlotAsync(slot);
             if (updated)
             {

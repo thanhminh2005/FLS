@@ -65,6 +65,7 @@ namespace FLS.Controllers
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] SemesterRequest request)
         {
             var semester = _mapper.Map<Semester>(request);
+            semester.Id = id;
             var updated = await _semesterBL.UpdateSemesterAsync(semester);
             if (updated)
             {

@@ -13,14 +13,20 @@ using BLL.Models.Lecturer.Responses;
 using BLL.Models.LecturerRating.Requests;
 using BLL.Models.LecturerType.Requests;
 using BLL.Models.LecturerType.Responses;
+using BLL.Models.MasterPlan.Requests;
+using BLL.Models.MasterPlan.Responses;
 using BLL.Models.Role.Requests;
 using BLL.Models.Role.Responses;
 using BLL.Models.Semester.Requests;
 using BLL.Models.Semester.Responses;
+using BLL.Models.SemesterRegister.Requests;
 using BLL.Models.Subject.Requests;
 using BLL.Models.Subject.Responses;
+using BLL.Models.TeachableSubject.Requests;
 using BLL.Models.TimeSlot.Requests;
 using BLL.Models.TimeSlot.Responses;
+using BLL.Models.TimeSlotRegister.Requests;
+using BLL.Models.TimeSlotRegister.Responses;
 using BLL.Models.User.Requests;
 using BLL.Models.User.Responses;
 using DAL.Entities;
@@ -73,7 +79,18 @@ namespace FLS.Helpers
 
             CreateMap<LecturerRating, LecturerRatingRequest>().ReverseMap();
 
+            CreateMap<LectureSemesterRegister, SemesterRegisterRequest>().ReverseMap();
 
+            CreateMap<TeachableSubject, TeachableSubjectRequest>().ReverseMap();
+
+            CreateMap<TimeSlotRegister, CreateTimeSlotRegisterRequest>().ReverseMap();
+            CreateMap<TimeSlotRegister, UpdateTimeSlotRegisterRequest>().ReverseMap();
+            CreateMap<TimeSlotRegister, TimeSlotRegisterResponse>().ReverseMap();
+
+
+            CreateMap<MasterPlan, CreateMasterPlanRequest>().ReverseMap();
+            CreateMap<TimeSlotRegister, UpdateMasterPlanRequest>().ReverseMap();
+            CreateMap<TimeSlotRegister, MasterPlanResponse>().ReverseMap();
         }
     }
 }

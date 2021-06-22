@@ -129,5 +129,50 @@
             public const string Update = Base + "/leturer-rating";
             public const string Delete = Base + "/leturer-rating/{semplan-id}/{lec-id}";
         }
+
+        public static class SemesterRegisters
+        {
+            public const string GetAll = Base + "/semester-register/";
+            public const string Get = Base + "/semester-register/{sem-id}/{lec-id}";
+            public const string Create = Base + "/semester-register";
+            public const string Update = Base + "/semester-register";
+            public const string Delete = Base + "/semester-register/{sem-id}/{lec-id}";
+        }
+
+        public static class SubjectRegisters
+        {
+            public const string GetAll = Base + "/subject-register/";
+            public const string Get = Base + "/subject-register/{id}";
+            public const string Create = Base + "/subject-register";
+            public const string Update = Base + "/subject-register/{id}";
+            public const string Delete = Base + "/subject-register/{id}";
+        }
+
+        public static class TeachableSubjects
+        {
+            public const string GetAll = Base + "/teachable-subject/";
+            public const string Get = Base + "/teachable-subject/{lec-id}/{sub-id}";
+            public const string Create = Base + "/teachable-subject";
+            public const string Update = Base + "/teachable-subject/";
+            public const string Delete = Base + "/teachable-subject/{lec-id}/{sub-id}";
+        }
+
+        public static class TimeSlotRegisters
+        {
+            public const string GetAll = Base + "/time-slot-register/";
+            public const string Get = Base + "/time-slot-register/{id}";
+            public const string Create = Base + "/time-slot-register";
+            public const string Update = Base + "/time-slot-register/{id}";
+            public const string Delete = Base + "/time-slot-register/{id}";
+        }
+
+        public static class MasterPlans
+        {
+            public const string GetAll = Base + "/master-plan/";
+            public const string Get = Base + "/master-plan/{id}";
+            public const string Create = Base + "/master-plan";
+            public const string Update = Base + "/master-plan/{id}";
+            public const string Delete = Base + "/master-plan/{id}";
+        }
     }
 }

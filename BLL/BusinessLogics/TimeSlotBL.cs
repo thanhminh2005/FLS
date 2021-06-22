@@ -81,12 +81,12 @@ namespace BLL.BusinessLogics
             var check = false;
             if (isPeriodValid(start, end))
             {
-                check = true;
+                check = false;
                 foreach (var slot in slots)
                 {
                     if (slot.StartTime.CompareTo(end) < 0 && slot.EndTime.CompareTo(start) > 0)
                     {
-                        return false;
+                        return true;
                     }
                 }
             }
