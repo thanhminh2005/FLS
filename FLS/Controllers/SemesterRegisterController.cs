@@ -4,9 +4,6 @@ using BLL.Models.SemesterRegister.Requests;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers

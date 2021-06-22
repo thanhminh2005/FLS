@@ -4,7 +4,6 @@ using BLL.Models.DepartmentBlog.Requests;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
@@ -54,7 +53,7 @@ namespace FLS.Controllers
             {
                 var response = _departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId);
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-                var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}/{blog-id}", departmentBlog.DepartmentId.ToString()+ "/"+ departmentBlog.BlogId.ToString());
+                var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}/{blog-id}", departmentBlog.DepartmentId.ToString() + "/" + departmentBlog.BlogId.ToString());
                 return Created(locationUri, response);
             }
             return BadRequest();

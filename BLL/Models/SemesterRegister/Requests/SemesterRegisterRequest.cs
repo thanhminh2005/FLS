@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.SemesterRegister.Requests
+﻿namespace BLL.Models.SemesterRegister.Requests
 {
     public class SemesterRegisterRequest
     {

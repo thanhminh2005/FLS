@@ -87,7 +87,6 @@ namespace FLS.Helpers
             CreateMap<TimeSlotRegister, UpdateTimeSlotRegisterRequest>().ReverseMap();
             CreateMap<TimeSlotRegister, TimeSlotRegisterResponse>().ReverseMap();
 
-
             CreateMap<MasterPlan, CreateMasterPlanRequest>().ReverseMap();
             CreateMap<TimeSlotRegister, UpdateMasterPlanRequest>().ReverseMap();
             CreateMap<TimeSlotRegister, MasterPlanResponse>().ReverseMap();

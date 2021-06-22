@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BLL.Models.TimeSlot.Responses
+﻿namespace BLL.Models.TimeSlot.Responses
 {
     public class TimeSlotResponse
     {

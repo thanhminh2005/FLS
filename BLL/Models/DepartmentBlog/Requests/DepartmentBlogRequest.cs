@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.DepartmentBlog.Requests
+﻿namespace BLL.Models.DepartmentBlog.Requests
 {
     public class DepartmentBlogRequest
     {

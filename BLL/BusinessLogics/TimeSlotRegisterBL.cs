@@ -3,10 +3,7 @@ using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -25,7 +22,7 @@ namespace BLL.BusinessLogics
         public async Task<bool> CreateTimeSlotRegisterAsync(TimeSlotRegister register)
         {
             var existRegister = await _context.TimeSlotRegisters.SingleOrDefaultAsync(x => x.LecturerId == register.LecturerId && x.SemesterPlanId == register.SemesterPlanId && x.TimeSlotId == register.TimeSlotId);
-            if(existRegister == null)
+            if (existRegister == null)
             {
                 await _context.TimeSlotRegisters.AddAsync(register);
                 var created = await _context.SaveChangesAsync();

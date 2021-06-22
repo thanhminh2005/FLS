@@ -107,7 +107,7 @@ namespace FLS.Controllers
                 EndTime = _timeConvert.StringToTimeSpan(request.EndTime),
                 StartTime = _timeConvert.StringToTimeSpan(request.StartTime)
             };
-            
+
             var updated = await _slotBL.UpdateTimeSlotAsync(slot);
             if (updated)
             {

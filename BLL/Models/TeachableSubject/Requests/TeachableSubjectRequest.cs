@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.TeachableSubject.Requests
+﻿namespace BLL.Models.TeachableSubject.Requests
 {
     public class TeachableSubjectRequest
     {
