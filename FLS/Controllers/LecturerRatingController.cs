@@ -4,7 +4,6 @@ using BLL.Models.LecturerRating.Requests;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
@@ -54,7 +53,7 @@ namespace FLS.Controllers
             {
                 var response = _departmentBlogBL.GetLecturerRatingAsync(rating.SemesterPlanId, rating.LecturerId);
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-                var locationUri = baseUrl + "/" + ApiRoute.LecturerRatings.Get.Replace("{semplan-id}/{lec-id}", rating.SemesterPlanId.ToString()+ "/"+ rating.LecturerId.ToString());
+                var locationUri = baseUrl + "/" + ApiRoute.LecturerRatings.Get.Replace("{semplan-id}/{lec-id}", rating.SemesterPlanId.ToString() + "/" + rating.LecturerId.ToString());
                 return Created(locationUri, response);
             }
             return BadRequest();

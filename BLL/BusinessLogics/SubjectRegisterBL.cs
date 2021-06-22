@@ -3,10 +3,7 @@ using BLL.Interfaces;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -27,7 +24,7 @@ namespace BLL.BusinessLogics
             var existRegister = _context
                 .SubjectRegisters
                 .SingleOrDefaultAsync(x => x.LecturerId == register.LecturerId && x.SemesterPlanId == register.SemesterPlanId && x.SubjectId == register.SubjectId);
-            if(existRegister == null)
+            if (existRegister == null)
             {
                 await _context.SubjectRegisters.AddAsync(register);
                 var created = await _context.SaveChangesAsync();

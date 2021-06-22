@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.Course.Responses
+﻿namespace BLL.Models.Course.Responses
 {
     public class CourseResponse
     {

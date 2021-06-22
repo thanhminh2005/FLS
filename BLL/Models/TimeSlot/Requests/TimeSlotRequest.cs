@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BLL.Models.TimeSlot.Requests
+﻿namespace BLL.Models.TimeSlot.Requests
 {
     public class TimeSlotRequest
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.MasterPlan.Responses
+﻿namespace BLL.Models.MasterPlan.Responses
 {
     public class MasterPlanResponse
     {

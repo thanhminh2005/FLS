@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Models.SubjectRegister.Responses
+﻿namespace BLL.Models.SubjectRegister.Responses
 {
     public class SubjectRegisterResponse
     {
