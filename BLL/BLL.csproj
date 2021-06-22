@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogics\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\DepartmentBlog\Responses\" />
+    <Folder Include="Models\SemesterRegister\Responses\" />
+    <Folder Include="Models\TeachableSubject\Responses\" />
   </ItemGroup>
 
 </Project>

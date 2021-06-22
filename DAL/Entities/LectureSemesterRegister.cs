@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace DAL
+namespace DAL.Entities
 {
     public partial class LectureSemesterRegister
     {
-        public string LecturerId { get; set; }
-        public string SemesterId { get; set; }
+        public int LecturerId { get; set; }
+        public int SemesterId { get; set; }
 
-        public virtual Lecture Lecturer { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
         public virtual Semester Semester { get; set; }
     }
 }

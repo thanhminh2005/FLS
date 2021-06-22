@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace DAL
+namespace DAL.Entities
 {
     public partial class Course
     {
-        public Course()
-        {
-            Sessions = new HashSet<Session>();
-        }
-
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string SubjectId { get; set; }
-        public string SemesterId { get; set; }
+        public int SubjectId { get; set; }
+        public int SemesterId { get; set; }
 
         public virtual Semester Semester { get; set; }
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

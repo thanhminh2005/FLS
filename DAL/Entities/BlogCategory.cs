@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL
+namespace DAL.Entities
 {
     public partial class BlogCategory
     {
@@ -12,7 +11,7 @@ namespace DAL
             Blogs = new HashSet<Blog>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Blog> Blogs { get; set; }

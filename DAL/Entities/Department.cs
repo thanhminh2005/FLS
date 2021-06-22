@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL
+namespace DAL.Entities
 {
     public partial class Department
     {
         public Department()
         {
-            Blogs = new HashSet<Blog>();
-            Lectures = new HashSet<Lecture>();
+            DepartmentBlogs = new HashSet<DepartmentBlog>();
+            Lectures = new HashSet<Lecturer>();
             Subjects = new HashSet<Subject>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<Blog> Blogs { get; set; }
-        public virtual ICollection<Lecture> Lectures { get; set; }
+        public virtual ICollection<DepartmentBlog> DepartmentBlogs { get; set; }
+        public virtual ICollection<Lecturer> Lectures { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

@@ -3,25 +3,21 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DAL
+namespace DAL.Entities
 {
     public partial class TimeSlot
     {
         public TimeSlot()
         {
-            LecturerPlanConstraints = new HashSet<LecturerPlanConstraint>();
-            PreferTimeSlots = new HashSet<PreferTimeSlot>();
-            Sessions = new HashSet<Session>();
+            TimeSlotRegisters = new HashSet<TimeSlotRegister>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public int PriorityPoint { get; set; }
 
-        public virtual ICollection<LecturerPlanConstraint> LecturerPlanConstraints { get; set; }
-        public virtual ICollection<PreferTimeSlot> PreferTimeSlots { get; set; }
-        public virtual ICollection<Session> Sessions { get; set; }
+        public virtual ICollection<TimeSlotRegister> TimeSlotRegisters { get; set; }
     }
 }
