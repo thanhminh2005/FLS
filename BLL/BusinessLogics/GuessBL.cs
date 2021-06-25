@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Models.User.Responses;
 using DAL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -22,10 +23,14 @@ namespace BLL.BusinessLogics
         {
             if (!String.IsNullOrWhiteSpace(username) || !String.IsNullOrWhiteSpace(password))
             {
-                var user = _context.Users.SingleOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
+                var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
                 if (user != null)
                 {
-                    var userProfile = _mapper.Map<UserProfileResponse>(user);
+                    var userProfile = new UserProfileResponse {
+                        Id = user.Id,
+                        Username = user.Username,
+                        Rolename = user.Role.Name
+                    };
                     return userProfile;
                 }
             }

@@ -26,8 +26,9 @@ namespace FLS.Helpers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("user_id", user.Username.ToString()),
-                    new Claim("user_role", user.RoleId.ToString())
+                    new Claim("user_id", user.Id.ToString()),
+                    new Claim("user_name", user.Username.ToString()),
+                    new Claim("user_role", user.Rolename.ToString())
                 }),
                 Expires = DateTime.Now.AddMinutes(60),
                 Issuer = null,

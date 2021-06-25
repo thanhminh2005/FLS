@@ -2,6 +2,7 @@
 using BLL.Models.User.Requests;
 using FLS.Contracts;
 using FLS.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FLS.Controllers
@@ -16,7 +17,6 @@ namespace FLS.Controllers
             _guestBL = guestBL;
             _token = token;
         }
-
         [HttpPost(ApiRoute.Guests.Login)]
         public IActionResult Login([FromBody] UserAuthenticationRequest authenticationRequest)
         {
