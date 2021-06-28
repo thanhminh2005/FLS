@@ -31,6 +31,7 @@ namespace FLS.Installers
             services.AddScoped<ITeachableSubjectBL, TeachableSubjectBL>();
             services.AddScoped<ITimeSlotRegisterBL, TimeSlotRegisterBL>();
             services.AddScoped<IMasterPlanBL, MasterPlanBL>();
+            services.AddScoped<ISemesterPlanBL, SemesterPlanBL>();
         }
     }
 }

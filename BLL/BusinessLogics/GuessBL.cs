@@ -26,7 +26,8 @@ namespace BLL.BusinessLogics
                 var user = _context.Users.Include(x => x.Role).SingleOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
                 if (user != null)
                 {
-                    var userProfile = new UserProfileResponse {
+                    var userProfile = new UserProfileResponse
+                    {
                         Id = user.Id,
                         Username = user.Username,
                         Rolename = user.Role.Name

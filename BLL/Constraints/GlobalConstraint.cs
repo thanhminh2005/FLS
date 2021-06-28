@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.Constraints
+﻿namespace BLL.Constraints
 {
     public class GlobalConstraint
     {
@@ -18,5 +14,7 @@ namespace BLL.Constraints
         public int MaxLecturerInSubject { get; set; }
         public int MinPercentCourseTeachByLecturer { get; set; }
         public int MaxPercentCourseTeachByLecturer { get; set; }
+        public string StartWorkTime { get; set; }
+        public string EndWorkTime { get; set; }
     }
 }

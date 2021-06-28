@@ -2,7 +2,6 @@
 using BLL.Models.User.Requests;
 using FLS.Contracts;
 using FLS.Helpers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FLS.Controllers

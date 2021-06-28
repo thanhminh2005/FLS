@@ -19,6 +19,7 @@ using BLL.Models.Role.Requests;
 using BLL.Models.Role.Responses;
 using BLL.Models.Semester.Requests;
 using BLL.Models.Semester.Responses;
+using BLL.Models.SemesterPlan.Requests;
 using BLL.Models.SemesterRegister.Requests;
 using BLL.Models.Subject.Requests;
 using BLL.Models.Subject.Responses;
@@ -88,8 +89,12 @@ namespace FLS.Helpers
             CreateMap<TimeSlotRegister, TimeSlotRegisterResponse>().ReverseMap();
 
             CreateMap<MasterPlan, CreateMasterPlanRequest>().ReverseMap();
-            CreateMap<TimeSlotRegister, UpdateMasterPlanRequest>().ReverseMap();
-            CreateMap<TimeSlotRegister, MasterPlanResponse>().ReverseMap();
+            CreateMap<MasterPlan, UpdateMasterPlanRequest>().ReverseMap();
+            CreateMap<MasterPlan, MasterPlanResponse>().ReverseMap();
+
+            CreateMap<SemesterPlan, CreateSemesterPlanRequest>().ReverseMap();
+            CreateMap<SemesterPlan, UpdateSemesterPlanRequest>().ReverseMap();
+
         }
     }
 }

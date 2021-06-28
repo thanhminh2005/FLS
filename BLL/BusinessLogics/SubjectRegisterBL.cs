@@ -21,7 +21,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> CreateSubjectRegisterAsync(SubjectRegister register)
         {
-            var existRegister = _context
+            var existRegister = await _context
                 .SubjectRegisters
                 .SingleOrDefaultAsync(x => x.LecturerId == register.LecturerId && x.SemesterPlanId == register.SemesterPlanId && x.SubjectId == register.SubjectId);
             if (existRegister == null)

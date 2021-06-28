@@ -6,8 +6,6 @@
         public const string Version = "v1";
         public const string Base = Root + "/" + Version;
 
-        public static object BlogCategorys { get; internal set; }
-
         public static class Guests
         {
             public const string Login = Base + "/guest/login";
@@ -173,6 +171,15 @@
             public const string Create = Base + "/master-plan";
             public const string Update = Base + "/master-plan/{id}";
             public const string Delete = Base + "/master-plan/{id}";
+        }
+
+        public static class SemesterPlans
+        {
+            public const string GetAll = Base + "/semester-plan/";
+            public const string Get = Base + "/semester-plan/{id}";
+            public const string Create = Base + "/semester-plan";
+            public const string Update = Base + "/semester-plan/{id}";
+            public const string Delete = Base + "/semester-plan/{id}";
         }
     }
 }

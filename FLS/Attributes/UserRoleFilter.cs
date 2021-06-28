@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FLS.Attributes
 {
@@ -22,7 +20,7 @@ namespace FLS.Attributes
             if (context.HttpContext.User.Claims == null || !context.HttpContext.User.Claims.Any())
             {
                 context.Result = new ForbidResult("Unauthorized access");
-            } 
+            }
             else
             {
                 var userIdClaim = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type.Equals("user_id"));
@@ -36,7 +34,7 @@ namespace FLS.Attributes
                 }
                 var roleClaim = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type.Equals("user_role"));
                 if (roleClaim != null)
-                {   
+                {
                     var userId = roleClaim.Value;
                 }
                 else

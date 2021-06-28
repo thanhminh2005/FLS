@@ -51,7 +51,7 @@ namespace FLS.Controllers
             var created = await _TeachableSubjectBL.CreateTeachableSubjectAsync(teachable);
             if (created)
             {
-                var response = _TeachableSubjectBL.GetTeachableSubjectAsync(teachable.LecturerId, teachable.SubjectId);
+                var response = await _TeachableSubjectBL.GetTeachableSubjectAsync(teachable.LecturerId, teachable.SubjectId);
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
                 var locationUri = baseUrl + "/" + ApiRoute.TeachableSubjects.Get.Replace("{lec-id}/{sub-id}", teachable.LecturerId.ToString() + "/" + teachable.SubjectId.ToString());
                 return Created(locationUri, response);

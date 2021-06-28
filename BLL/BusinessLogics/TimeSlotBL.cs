@@ -60,8 +60,14 @@ namespace BLL.BusinessLogics
             var newTimeSlot = await GetTimeSlotAsync(slot.Id);
             if (newTimeSlot != null)
             {
-                if (!IsOverLap(slot.StartTime, slot.EndTime, await GetAllTimeSlotsAsync()))
+                var timeslots = await GetAllTimeSlotsAsync();
+                timeslots.Remove(newTimeSlot);
+                if (!IsOverLap(slot.StartTime, slot.EndTime, timeslots))
                 {
+                    newTimeSlot.EndTime = slot.EndTime;
+                    newTimeSlot.StartTime = slot.StartTime;
+                    newTimeSlot.Name = slot.Name;
+                    newTimeSlot.PriorityPoint = slot.PriorityPoint;
                     _context.TimeSlots.Update(newTimeSlot);
                     var updated = await _context.SaveChangesAsync();
                     return updated > 0;
