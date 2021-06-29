@@ -8,6 +8,7 @@ using BLL.Models.Course.Responses;
 using BLL.Models.Department.Requests;
 using BLL.Models.Department.Responses;
 using BLL.Models.DepartmentBlog.Requests;
+using BLL.Models.DepartmentBlog.Responses;
 using BLL.Models.Lecturer.Requests;
 using BLL.Models.Lecturer.Responses;
 using BLL.Models.LecturerRating.Requests;
@@ -23,6 +24,8 @@ using BLL.Models.SemesterPlan.Requests;
 using BLL.Models.SemesterRegister.Requests;
 using BLL.Models.Subject.Requests;
 using BLL.Models.Subject.Responses;
+using BLL.Models.SubjectRegister.Requests;
+using BLL.Models.SubjectRegister.Responses;
 using BLL.Models.TeachableSubject.Requests;
 using BLL.Models.TimeSlot.Requests;
 using BLL.Models.TimeSlot.Responses;
@@ -77,6 +80,7 @@ namespace FLS.Helpers
             CreateMap<Course, CourseResponse>().ReverseMap();
 
             CreateMap<DepartmentBlog, DepartmentBlogRequest>().ReverseMap();
+            CreateMap<DepartmentBlog, DepartmentBlogResponse>().ReverseMap();
 
             CreateMap<LecturerRating, LecturerRatingRequest>().ReverseMap();
 
@@ -94,6 +98,9 @@ namespace FLS.Helpers
 
             CreateMap<SemesterPlan, CreateSemesterPlanRequest>().ReverseMap();
             CreateMap<SemesterPlan, UpdateSemesterPlanRequest>().ReverseMap();
+
+            CreateMap<SubjectRegister, SubjectRegisterRequest>().ReverseMap();
+            CreateMap<SubjectRegister, SubjectRegisterResponse>().ReverseMap();
 
         }
     }

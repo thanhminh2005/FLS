@@ -43,8 +43,6 @@ namespace BLL.BusinessLogics
         {
             return _context
                 .LectureSemesterRegisters
-                .Include(x => x.Semester)
-                .Include(x => x.Lecturer)
                 .ToListAsync();
         }
 

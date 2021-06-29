@@ -43,8 +43,6 @@ namespace BLL.BusinessLogics
         {
             return _context
                 .DepartmentBlogs
-                .Include(x => x.Blog)
-                .Include(x => x.Department)
                 .ToListAsync();
         }
 
@@ -52,8 +50,6 @@ namespace BLL.BusinessLogics
         {
             return _context
                 .DepartmentBlogs
-                .Include(x => x.Blog)
-                .Include(x => x.Department)
                 .SingleOrDefaultAsync(x => x.BlogId == blogId && x.DepartmentId == departmentId);
         }
 

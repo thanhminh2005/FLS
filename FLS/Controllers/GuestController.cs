@@ -1,5 +1,6 @@
 ﻿using BLL.Interfaces;
 using BLL.Models.User.Requests;
+using BLL.Models.User.Responses;
 using FLS.Contracts;
 using FLS.Helpers;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,13 @@ namespace FLS.Controllers
             if (user != null)
             {
                 var tokenString = _token.CreateAccessToken(user);
-                return Ok(tokenString);
+                var response = new AfterLoginUserResponse
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Token = tokenString
+                };
+                return Ok(response);
             }
             return BadRequest();
         }

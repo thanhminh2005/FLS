@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models.DepartmentBlog.Requests;
+using BLL.Models.DepartmentBlog.Responses;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FLS.Controllers
@@ -37,7 +39,7 @@ namespace FLS.Controllers
             var departmentBlogs = await _departmentBlogBL.GetAllDepartmentBlogsAsync();
             if (departmentBlogs != null)
             {
-                var response = departmentBlogs;
+                var response = _mapper.Map<List<DepartmentBlog>, List<DepartmentBlogResponse>>(departmentBlogs);
                 return Ok(response);
             }
             return NoContent();
@@ -51,7 +53,7 @@ namespace FLS.Controllers
             var created = await _departmentBlogBL.CreateDepartmentBlogAsync(departmentBlog);
             if (created)
             {
-                var response = _departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId);
+                var response = _mapper.Map<DepartmentBlogResponse>(_departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId));
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
                 var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}/{blog-id}", departmentBlog.DepartmentId.ToString() + "/" + departmentBlog.BlogId.ToString());
                 return Created(locationUri, response);

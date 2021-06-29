@@ -48,12 +48,12 @@ namespace BLL.BusinessLogics
 
         public Task<TeachableSubject> GetTeachableSubjectAsync(int lecturerId, int subjectId)
         {
-            return _context.TeachableSubjects.Include(x => x.Lecturer).Include(x => x.Subject).SingleOrDefaultAsync(x => x.LecturerId == lecturerId && x.SubjectId == subjectId);
+            return _context.TeachableSubjects.SingleOrDefaultAsync(x => x.LecturerId == lecturerId && x.SubjectId == subjectId);
         }
 
         public Task<List<TeachableSubject>> GetAllTeachableSubjectsAsync()
         {
-            return _context.TeachableSubjects.Include(x => x.Lecturer).Include(x => x.Subject).ToListAsync();
+            return _context.TeachableSubjects.ToListAsync();
         }
 
         public async Task<bool> UpdateTeachableSubjectAsync(TeachableSubject teachable)

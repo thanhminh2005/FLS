@@ -37,12 +37,12 @@ namespace BLL.BusinessLogics
 
         public Task<List<SemesterPlan>> GetAllSemesterPlansAsync()
         {
-            return _context.SemesterPlans.Include(x => x.Semester).Include(x => x.MasterPlan).ToListAsync();
+            return _context.SemesterPlans.ToListAsync();
         }
 
         public Task<SemesterPlan> GetSemesterPlanAsync(int id)
         {
-            return _context.SemesterPlans.Include(x => x.Semester).Include(x => x.MasterPlan).SingleOrDefaultAsync(x => x.Id == id);
+            return _context.SemesterPlans.SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<bool> UpdateSemesterPlanAsync(SemesterPlan plan)

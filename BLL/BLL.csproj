@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DepartmentBlog\Responses\" />
     <Folder Include="Models\SemesterRegister\Responses\" />
     <Folder Include="Models\TeachableSubject\Responses\" />
   </ItemGroup>

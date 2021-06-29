@@ -21,6 +21,23 @@ namespace FLS
         public void ConfigureServices(IServiceCollection services)
         {
             services.InstallServicesInAssembly(Configuration);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                       builder =>
+                       {
+                           builder.WithOrigins(
+                                     "http://localhost:8080",
+                                     "http://localhost:8081",
+                                     "http://localhost:3000")
+                                  //.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader()
+                                  .AllowCredentials()
+                                  .SetIsOriginAllowed((host) => true);
+                       });
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,9 +66,9 @@ namespace FLS
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
             app.UseRouting();
             app.UseAuthentication();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
