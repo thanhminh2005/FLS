@@ -21,7 +21,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> CreateDepartmentAsync(Department department)
         {
-            var existDepartment = await _context.Departments.SingleOrDefaultAsync(x => x.Name.Equals(department.Name));
+            var existDepartment = await _context.Departments.SingleOrDefaultAsync(x => x.Name.Equals(department.Name) || x.UserId == department.UserId);
             if (existDepartment == null)
             {
                 await _context.Departments.AddAsync(department);
@@ -48,6 +48,11 @@ namespace BLL.BusinessLogics
             return _context.Departments.ToListAsync();
         }
 
+        public Task<Department> GetDepartmentByUserIdAsync(int id)
+        {
+            return _context.Departments.SingleOrDefaultAsync(x => x.UserId == id);
+        }
+
         public Task<Department> GetDepartmentAsync(int id)
         {
             return _context.Departments.SingleOrDefaultAsync(x => x.Id == id);
@@ -60,7 +65,7 @@ namespace BLL.BusinessLogics
             {
                 newDepartment.Name = department.Name;
                 newDepartment.Description = department.Description;
-
+                newDepartment.UserId = department.UserId;
                 _context.Departments.Update(newDepartment);
                 var updated = await _context.SaveChangesAsync();
                 return updated > 0;

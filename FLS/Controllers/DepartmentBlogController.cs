@@ -53,9 +53,10 @@ namespace FLS.Controllers
             var created = await _departmentBlogBL.CreateDepartmentBlogAsync(departmentBlog);
             if (created)
             {
-                var response = _mapper.Map<DepartmentBlogResponse>(_departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId));
+                var response = _mapper.Map<DepartmentBlogResponse>(await _departmentBlogBL.GetDepartmentBlogAsync(departmentBlog.DepartmentId, departmentBlog.BlogId));
                 var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-                var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}/{blog-id}", departmentBlog.DepartmentId.ToString() + "/" + departmentBlog.BlogId.ToString());
+                var locationUri = baseUrl + "/" + ApiRoute.DepartmentBlogs.Get.Replace("{dept-id}", departmentBlog.DepartmentId.ToString());
+                locationUri = locationUri.Replace("{blog-id}", departmentBlog.BlogId.ToString());
                 return Created(locationUri, response);
             }
             return BadRequest();

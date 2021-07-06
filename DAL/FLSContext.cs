@@ -107,6 +107,16 @@ namespace DAL
                 entity.Property(e => e.Description).HasMaxLength(100);
 
                 entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .IsUnicode(false);
+                entity.HasOne(d => d.UserNavigation)
+                    .WithMany(p => p.Departments)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Department_User");
             });
 
             modelBuilder.Entity<DepartmentBlog>(entity =>

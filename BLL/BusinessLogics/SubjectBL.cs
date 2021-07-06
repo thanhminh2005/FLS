@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
+using BLL.Queries;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -43,9 +45,17 @@ namespace BLL.BusinessLogics
             return deleted > 0;
         }
 
-        public Task<List<Subject>> GetAllSubjectsAsync()
+        public Task<List<Subject>> GetAllSubjectsAsync(GetAllSubjectQuery query)
         {
-            return _context.Subjects.ToListAsync();
+            var queryable = _context.Subjects.AsQueryable();
+            if(queryable != null)
+            {
+                if(query.DepartmentId != 0)
+                {
+                    queryable = queryable.Where(x => x.DepartmentId == query.DepartmentId); 
+                }
+            }
+            return queryable.ToListAsync();
         }
 
         public Task<Subject> GetSubjectAsync(int id)

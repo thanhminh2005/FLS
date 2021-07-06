@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
+using BLL.Queries;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -46,11 +48,20 @@ namespace BLL.BusinessLogics
             return _context.Blogs.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<Blog>> GetAllBlogsAsync()
+        public Task<List<Blog>> GetAllBlogsAsync(GetAllBlogQuery query)
         {
-            return _context.Blogs.ToListAsync();
+            var queryable = _context.Blogs.AsQueryable();
+            if(queryable!= null)
+            {
+                if (query.BlogCategoryId != 0)
+                {
+                    queryable = queryable.Where(x => x.BlogCategoryId == query.BlogCategoryId);
+                }
+                
+            }
+            return queryable.ToListAsync();
         }
-
+            
         public async Task<bool> UpdateBlogAsync(Blog blog)
         {
             var newBlog = await GetBlogAsync(blog.Id);
@@ -66,5 +77,6 @@ namespace BLL.BusinessLogics
             }
             return false;
         }
+
     }
 }

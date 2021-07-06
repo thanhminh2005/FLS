@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Models.Blog.Requests;
 using BLL.Models.Blog.Responses;
+using BLL.Queries;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -34,9 +35,9 @@ namespace FLS.Controllers
         }
 
         [HttpGet(ApiRoute.Blogs.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] GetAllBlogQuery query)
         {
-            var blogs = await _blogBL.GetAllBlogsAsync();
+            var blogs = await _blogBL.GetAllBlogsAsync(query);
             if (blogs != null)
             {
                 var response = _mapper.Map<List<Blog>, List<BlogResponse>>(blogs);

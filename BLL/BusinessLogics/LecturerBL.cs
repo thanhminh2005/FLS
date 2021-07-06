@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BLL.Interfaces;
+using BLL.Queries;
 using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.BusinessLogics
@@ -21,7 +23,7 @@ namespace BLL.BusinessLogics
 
         public async Task<bool> CreateLecturerAsync(Lecturer Lecturer)
         {
-            var existLecturer = await _context.Lecturers.SingleOrDefaultAsync(x => x.LecturerCode.Equals(Lecturer.LecturerCode));
+            var existLecturer = await _context.Lecturers.SingleOrDefaultAsync(x => x.LecturerCode.Equals(Lecturer.LecturerCode) || x.UserId == Lecturer.UserId);
             if (existLecturer == null)
             {
                 await _context.Lecturers.AddAsync(Lecturer);
@@ -48,9 +50,26 @@ namespace BLL.BusinessLogics
             return _context.Lecturers.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<Lecturer>> GetAllLecturersAsync()
+        public Task<Lecturer> GetLecturerByUserIdAsync(int id)
         {
-            return _context.Lecturers.ToListAsync();
+            return _context.Lecturers.SingleOrDefaultAsync(x => x.UserId == id);
+        }
+
+        public Task<List<Lecturer>> GetAllLecturersAsync(GetAllLecturerQuery query)
+        {
+            var queryable = _context.Lecturers.AsQueryable();
+            if(queryable != null)
+            {
+                if (query.DepartmentId != 0)
+                {
+                    queryable = queryable.Where(x => x.DepartmentId == query.DepartmentId);
+                }
+                if (query.LecturerTypeId != 0)
+                {
+                    queryable = queryable.Where(x => x.LecturerTypeId == query.LecturerTypeId);
+                }
+            }
+            return queryable.ToListAsync();
         }
 
         public async Task<bool> UpdateLecturerAsync(Lecturer lecturer)

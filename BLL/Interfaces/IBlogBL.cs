@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using BLL.Queries;
+using DAL.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace BLL.Interfaces
 {
     public interface IBlogBL
     {
-        Task<List<Blog>> GetAllBlogsAsync();
+        Task<List<Blog>> GetAllBlogsAsync(GetAllBlogQuery query =  null);
 
         Task<Blog> GetBlogAsync(int id);
 

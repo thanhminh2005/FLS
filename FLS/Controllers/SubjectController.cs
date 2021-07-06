@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Models.Subject.Requests;
 using BLL.Models.Subject.Responses;
+using BLL.Queries;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -34,9 +35,9 @@ namespace FLS.Controllers
         }
 
         [HttpGet(ApiRoute.Subjects.GetAll)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]GetAllSubjectQuery query)
         {
-            var subjects = await _subjectBL.GetAllSubjectsAsync();
+            var subjects = await _subjectBL.GetAllSubjectsAsync(query);
             if (subjects != null)
             {
                 var response = _mapper.Map<List<Subject>, List<SubjectResponse>>(subjects);

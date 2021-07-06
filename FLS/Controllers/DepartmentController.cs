@@ -33,6 +33,18 @@ namespace FLS.Controllers
             return NotFound();
         }
 
+        [HttpGet(ApiRoute.Departments.GetByUser)]
+        public async Task<IActionResult> GetByUser([FromRoute] int id)
+        {
+            var department = await _departmentBL.GetDepartmentByUserIdAsync(id);
+            if (department != null)
+            {
+                var response = _mapper.Map<DepartmentResponse>(department);
+                return Ok(response);
+            }
+            return NotFound();
+        }
+
         [HttpGet(ApiRoute.Departments.GetAll)]
         public async Task<IActionResult> GetAll()
         {

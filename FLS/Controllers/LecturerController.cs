@@ -2,6 +2,7 @@
 using BLL.Interfaces;
 using BLL.Models.Lecturer.Requests;
 using BLL.Models.Lecturer.Responses;
+using BLL.Queries;
 using DAL.Entities;
 using FLS.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +33,21 @@ namespace FLS.Controllers
             }
             return NotFound();
         }
-
-        [HttpGet(ApiRoute.Lecturers.GetAll)]
-        public async Task<IActionResult> GetAll()
+        [HttpGet(ApiRoute.Lecturers.GetByUser)]
+        public async Task<IActionResult> GetLecturerByUserId([FromRoute] int id)
         {
-            var lecturers = await _lecturerBL.GetAllLecturersAsync();
+            var lecturer = await _lecturerBL.GetLecturerAsync(id);
+            if (lecturer != null)
+            {
+                var response = _mapper.Map<LecturerResponse>(lecturer);
+                return Ok(response);
+            }
+            return NotFound();
+        }
+        [HttpGet(ApiRoute.Lecturers.GetAll)]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllLecturerQuery query)
+        {
+            var lecturers = await _lecturerBL.GetAllLecturersAsync(query);
             if (lecturers != null)
             {
                 var response = _mapper.Map<List<Lecturer>, List<LecturerResponse>>(lecturers);

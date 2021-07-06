@@ -42,6 +42,7 @@
         {
             public const string GetAll = Base + "/department/";
             public const string Get = Base + "/department/{id}";
+            public const string GetByUser = Base + "/user/{id}/department";
             public const string Create = Base + "/department";
             public const string Update = Base + "/department/{id}";
             public const string Delete = Base + "/department/{id}";
@@ -51,6 +52,7 @@
         {
             public const string GetAll = Base + "/lecturer/";
             public const string Get = Base + "/lecturer/{id}";
+            public const string GetByUser = Base + "/user/{id}/lecturer";
             public const string Create = Base + "/lecturer";
             public const string Update = Base + "/lecturer/{id}";
             public const string Delete = Base + "/lecturer/{id}";
@@ -58,11 +60,11 @@
 
         public static class LecturerTypes
         {
-            public const string GetAll = Base + "/lecturer-type/";
-            public const string Get = Base + "/lecturer-type/{id}";
-            public const string Create = Base + "/lecturer-type";
-            public const string Update = Base + "/lecturer-type/{id}";
-            public const string Delete = Base + "/lecturer-type/{id}";
+            public const string GetAll = Base + "/lecturer/type/";
+            public const string Get = Base + "/lecturer/type/{id}";
+            public const string Create = Base + "/lecturer/type";
+            public const string Update = Base + "/lecturer/type/{id}";
+            public const string Delete = Base + "/lecturer/type/{id}";
         }
 
         public static class Blogs
@@ -76,11 +78,11 @@
 
         public static class BlogCategories
         {
-            public const string GetAll = Base + "/blog-category/";
-            public const string Get = Base + "/blog-category/{id}";
-            public const string Create = Base + "/blog-category";
-            public const string Update = Base + "/blog-category/{id}";
-            public const string Delete = Base + "/blog-category/{id}";
+            public const string GetAll = Base + "/blog/category/";
+            public const string Get = Base + "/blog/category/{id}";
+            public const string Create = Base + "/blog/category";
+            public const string Update = Base + "/blog/category/{id}";
+            public const string Delete = Base + "/blog/category/{id}";
         }
 
         public static class Semesters
@@ -112,11 +114,11 @@
 
         public static class DepartmentBlogs
         {
-            public const string GetAll = Base + "/department-blog/";
-            public const string Get = Base + "/department-blog/{dept-id}/{blog-id}";
-            public const string Create = Base + "/department-blog";
-            public const string Update = Base + "/department-blog";
-            public const string Delete = Base + "/department-blog/{dept-id}/{blog-id}";
+            public const string GetAll = Base + "/department/blog/";
+            public const string Get = Base + "/department/{dept-id}/blog/{blog-id}";
+            public const string Create = Base + "/department/blog";
+            public const string Update = Base + "/department/blog";
+            public const string Delete = Base + "/department/{dept-id}/blog/{blog-id}";
         }
 
         public static class LecturerRatings
